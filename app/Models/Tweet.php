@@ -19,6 +19,11 @@ class Tweet extends Model
 
     public function liked()
     {
-      return $this->belongsToMany(Tweet::class, 'tweet_user', 'user_id', 'tweet_id')->withTimestamps();
+      return $this->belongsToMany(User::class)->withTimestamps();
     }
+    // 🔽 1対多の関係
+  public function comments()
+  {
+    return $this->hasMany(Comment::class)->orderBy('created_at', 'desc');
+  }
 }
