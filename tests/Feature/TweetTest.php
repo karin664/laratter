@@ -1,4 +1,4 @@
-<<?php
+<?php
 // 🔽 追加
 use App\Models\Tweet;
 use App\Models\User;
@@ -37,7 +37,6 @@ it('displays the create tweet page', function () {
   // ステータスコードが200であることを確認
   $response->assertStatus(200);
 });
-
 // 作成処理のテスト
 it('allows authenticated users to create a tweet', function () {
   // ユーザを作成
@@ -59,7 +58,6 @@ it('allows authenticated users to create a tweet', function () {
   $response->assertStatus(302);
   $response->assertRedirect('/tweets');
 });
-
 // 詳細画面のテスト
 it('displays a tweet', function () {
   // ユーザを作成
