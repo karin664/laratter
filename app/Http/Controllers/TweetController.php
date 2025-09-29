@@ -47,6 +47,9 @@ class TweetController extends Controller
     {
       $tweet->load('comments');
       return view('tweets.show', compact('tweet'));
+
+      $tweet->load('tags');
+      return view('tweets.show', compact('tweet'));
     }
 
     /**
