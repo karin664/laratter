@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
   Route::delete('/follow/{user}', [FollowController::class, 'destroy'])->name('follow.destroy');
 
   Route::resource('tags', TagController::class);
+  Route::post('/tags', [TagController::class, 'store'])->name('tags.store');
 
 });
 

@@ -27,8 +27,8 @@ class Tweet extends Model
     return $this->hasMany(Comment::class)->orderBy('created_at', 'desc');
   }
 
-  public function tags()
-  {
-    return $this->hasMany(Tag::class);
-  }
+ public function tags()
+{
+    return $this->belongsToMany(Tag::class);
+}
 }
