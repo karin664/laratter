@@ -9,10 +9,10 @@ class Tag extends Model
 {
   use HasFactory;
 
-  protected $fillable = ['tag'];
+  protected $fillable = ['tag' , 'tweet_id'];
 
   public function Tweets()
   {
-    return $this->belongsTo(Tweet::class);
+    return $this->hasMany(Tweet::class);
   }
 }

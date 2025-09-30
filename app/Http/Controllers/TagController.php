@@ -26,11 +26,16 @@ class TagController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Tweet $tweet)
     {
-       $request->tweets()->tags()->create($request->only('tag'));
+       // タグを保存（重複があれば取得）
+    $tag = Tag::firstOrCreate(['name' => $request->input('tag')]);
 
-       return redirect()->route('tags.index');
+    // ツイートにタグを関連付け
+    $tweet->tags()->attach($tag->id);
+
+    return redirect()->route('tags.index')->with('success', 'タグを追加しました');
+}
 
     }
 

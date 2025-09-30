@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tweet;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class TweetController extends Controller
@@ -12,7 +13,7 @@ class TweetController extends Controller
      */
     public function index()
     {
-        $tweets = Tweet::with(['user', 'liked'])->latest()->get();
+        $tweets = Tweet::with(['user', 'liked'  ,'tag'])->latest()->get();
         return view('tweets.index', compact('tweets'));
     }
 
@@ -34,7 +35,22 @@ class TweetController extends Controller
       'tweet' => 'required|max:255',
     ]);
 
-    $request->user()->tweets()->create($request->only('tweet'));
+    
+
+    // ツイートを保存（タグと紐づけ）
+    $tweet=$request->user()->tweets()->create([
+        'tweet' => $request->input('tweet'),
+    ]);
+    
+// タグを取得または作成
+    $tag = Tag::firstOrCreate(['tag' => $request->input('tag'), 'tweet_id' => $tweet->id ]);
+
+ // タグが入力されているときだけ保存
+    if ($request->filled('tag')) {
+        $tweet->tag()->create([
+            'tag' => $request->input('tag'),
+        ]);
+    }
 
     return redirect()->route('tweets.index');
     }

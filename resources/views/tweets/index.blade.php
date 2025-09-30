@@ -36,6 +36,17 @@
             {{-- 🔼 ここまで --}}
           </div>
           @endforeach
+          @foreach($tweets as $tweet)
+          <div class="tweet">
+            <p>{{ $tweet->content }}</p>
+
+          @if($tweet->tag)
+            <span class="tag">#{{ $tweet->tag->name }}</span>
+          @else
+            <span class="tag text-muted">タグなし</span>
+          @endif
+         </div>
+          @endforeach
         </div>
       </div>
     </div>
