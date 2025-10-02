@@ -35,9 +35,8 @@ class TagController extends Controller
     $tweet->tags()->attach($tag->id);
 
     return redirect()->route('tags.index')->with('success', 'タグを追加しました');
-}
-
     }
+}
 
     /**
      * Display the specified resource.
@@ -70,4 +69,4 @@ class TagController extends Controller
     {
         //
     }
-}
+

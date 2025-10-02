@@ -13,6 +13,6 @@ class Tag extends Model
 
   public function Tweets()
   {
-    return $this->hasMany(Tweet::class);
+    return $this->belongsTo(Tweet::class);
   }
 }

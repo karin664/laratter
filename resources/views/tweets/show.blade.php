@@ -52,19 +52,13 @@
             </a>
             @endforeach
           </div>
-
-          <div class="mt-4">
-  <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">タグ</h3>
-  <ul class="flex flex-wrap gap-2 mt-2">
-    @foreach ($tweet->tags as $tag)
-      <li class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-100 px-2 py-1 rounded">
-        #{{ $tag->name }}
-      </li>
-    @endforeach
-  </ul>
-</div>
- 
           
+          <div class="mt-4">
+            @foreach ($tweet->tags ?? [] as $tag)
+            <p class="text-gray-800 dark:text-gray-300 text-lg">#{{ $tag->tag }}</p>
+           @endforeach
+          </div>
+ 
         </div>
       </div>
     </div>

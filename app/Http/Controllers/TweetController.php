@@ -49,6 +49,7 @@ class TweetController extends Controller
     if ($request->filled('tag')) {
         $tweet->tag()->create([
             'tag' => $request->input('tag'),
+            'tweet_id' => $tweet->id,
         ]);
     }
 
@@ -61,11 +62,11 @@ class TweetController extends Controller
      */
     public function show(Tweet $tweet)
     {
-      $tweet->load('comments');
+      $tweet->load('comments', "tag");
       return view('tweets.show', compact('tweet'));
 
-      $tweet->load('tags');
-      return view('tweets.show', compact('tweet'));
+
+      $tweet = Tweet::with('tags')->findOrFail($id);
     }
 
     /**
