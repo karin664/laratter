@@ -11,7 +11,7 @@ class Tag extends Model
 
   protected $fillable = ['tag' , 'tweet_id'];
 
-  public function Tweets()
+  public function tweet()
   {
     return $this->belongsTo(Tweet::class);
   }

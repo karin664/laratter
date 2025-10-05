@@ -37,7 +37,7 @@ class TweetController extends Controller
 
     
 
-    // ツイートを保存（タグと紐づけ）
+     // ツイートを保存（タグと紐づけ）
     $tweet=$request->user()->tweets()->create([
         'tweet' => $request->input('tweet'),
     ]);
@@ -51,10 +51,10 @@ class TweetController extends Controller
             'tag' => $request->input('tag'),
             'tweet_id' => $tweet->id,
         ]);
-    }
 
     return redirect()->route('tweets.index');
     }
+  }
 
 
     /**
@@ -62,7 +62,7 @@ class TweetController extends Controller
      */
     public function show(Tweet $tweet)
     {
-      $tweet->load('comments', "tag");
+      $tweet->load(['comments', "tag"]);
       return view('tweets.show', compact('tweet'));
 
 
@@ -123,5 +123,5 @@ public function search(Request $request)
     ->paginate(10);
 
   return view('tweets.search', compact('tweets'));
-}
+ }
 }

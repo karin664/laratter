@@ -53,11 +53,13 @@
             @endforeach
           </div>
           
-          <div class="mt-4">
-            @foreach ($tweet->tags ?? [] as $tag)
-            <p class="text-gray-800 dark:text-gray-300 text-lg">#{{ $tag->tag }}</p>
-           @endforeach
-          </div>
+         <div class="mt-4">
+  @if ($tweet->tag)
+    <span class="bg-blue-200 text-blue-600 px-2 py-1 rounded-full text-sm">
+      #{{ $tweet->tag->tag }}
+    </span>
+  @endif
+</div>
  
         </div>
       </div>

@@ -36,7 +36,7 @@ class TagController extends Controller
 
     return redirect()->route('tags.index')->with('success', 'タグを追加しました');
     }
-}
+
 
     /**
      * Display the specified resource.
@@ -69,4 +69,4 @@ class TagController extends Controller
     {
         //
     }
-
+}
